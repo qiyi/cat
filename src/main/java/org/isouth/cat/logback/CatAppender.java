@@ -20,7 +20,7 @@ public class CatAppender extends AppenderBase<ILoggingEvent> {
         this.setContext(context);
         PatternLayout patternLayout = new PatternLayout();
         patternLayout.setContext(context);
-        patternLayout.setPattern("%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n");
+        patternLayout.setPattern("%d{yyyy:MM:dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n");
         patternLayout.start();
         this.layout = patternLayout;
     }

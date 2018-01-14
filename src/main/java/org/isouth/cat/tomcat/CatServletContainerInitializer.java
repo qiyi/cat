@@ -12,7 +12,6 @@ import java.util.Set;
 public class CatServletContainerInitializer implements ServletContainerInitializer {
     @Override
     public void onStartup(Set<Class<?>> set, ServletContext servletContext) throws ServletException {
-
         Cat cat = new Cat().init();
 
         FilterRegistration.Dynamic filter = servletContext.addFilter("logcat", CatFilter.class);
