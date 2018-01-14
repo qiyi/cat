@@ -12,10 +12,15 @@ import java.util.Set;
 public class CatServletContainerInitializer implements ServletContainerInitializer {
     @Override
     public void onStartup(Set<Class<?>> set, ServletContext servletContext) throws ServletException {
+
+        Cat cat = new Cat().init();
+
         FilterRegistration.Dynamic filter = servletContext.addFilter("logcat", CatFilter.class);
         filter.addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST), false, "/*");
 
-        Cat cat = new Cat().init();
+        ServletRegistration.Dynamic servlet = servletContext.addServlet("logcat", CatServlet.class);
+        servlet.addMapping("/logcat");
+
         ServerContainer serverContainer = (ServerContainer) servletContext.getAttribute(ServerContainer.class.getName());
         try {
             serverContainer.addEndpoint(ServerEndpointConfig.Builder
